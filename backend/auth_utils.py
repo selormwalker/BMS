@@ -1,7 +1,11 @@
 import os
 from datetime import datetime, timedelta
 from passlib.context import CryptContext
-from jose import JWTError, jwt
+
+try:
+    import jwt
+except ImportError:
+    from jose import jwt
 
 try:
     from dotenv import load_dotenv
@@ -32,5 +36,5 @@ def decode_access_token(token: str):
     try:
         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
         return payload
-    except JWTError:
+    except Exception:
         return None

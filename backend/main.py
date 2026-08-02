@@ -189,4 +189,5 @@ if __name__ == "__main__":
     import uvicorn
     port_str = os.getenv("PORT")
     port = int(port_str) if port_str and port_str.isdigit() else 10000
+    print(f"Starting BMS FastAPI Server on port {port}...")
     uvicorn.run(app, host="0.0.0.0", port=port)
