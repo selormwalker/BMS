@@ -1,5 +1,11 @@
+import os
+import sys
 import datetime
 from typing import List, Dict
+
+# Ensure backend directory is in sys.path
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+
 from fastapi import FastAPI, HTTPException, Depends, WebSocket, WebSocketDisconnect, status
 from fastapi.middleware.cors import CORSMiddleware
 from bson import ObjectId
@@ -22,7 +28,6 @@ app.add_middleware(
 # WebSocket Real-Time Connection Manager
 class ConnectionManager:
     def __init__(self):
-        # Map user_id to active WebSocket connection
         self.active_connections: Dict[str, WebSocket] = {}
 
     async def connect(self, user_id: str, websocket: WebSocket):
@@ -44,7 +49,6 @@ class ConnectionManager:
 
 manager = ConnectionManager()
 
-# Helper serializer
 def serialize_doc(doc):
     if doc and "_id" in doc:
         doc["id"] = str(doc["_id"])
@@ -61,7 +65,6 @@ async def root():
 async def register(user_data: UserRegister):
     users_col = db["users"]
     
-    # Check if username or email exists
     existing_user = await users_col.find_one({
         "$or": [{"email": user_data.email}, {"username": user_data.username}]
     })
@@ -147,7 +150,6 @@ async def websocket_endpoint(websocket: WebSocket, user_id: str):
     try:
         while True:
             data = await websocket.receive_json()
-            # Message structure: { action: "send_message", chat_id: "...", receiver_id: "...", text: "...", msg_type: "text" }
             action = data.get("action")
             
             if action == "send_message":
@@ -170,13 +172,11 @@ async def websocket_endpoint(websocket: WebSocket, user_id: str):
                     "reaction": None
                 }
 
-                # Save message to MongoDB
                 result = await db["messages"].insert_one(msg_doc)
                 msg_doc["id"] = str(result.inserted_id)
                 if "_id" in msg_doc:
                     del msg_doc["_id"]
 
-                # Send real-time payload to sender and receiver
                 await manager.send_personal_message(msg_doc, user_id)
                 if receiver_id:
                     await manager.send_personal_message(msg_doc, receiver_id)
@@ -187,7 +187,6 @@ async def websocket_endpoint(websocket: WebSocket, user_id: str):
 
 if __name__ == "__main__":
     import uvicorn
-    import os
     port_str = os.getenv("PORT")
     port = int(port_str) if port_str and port_str.isdigit() else 10000
-    uvicorn.run("main:app", host="0.0.0.0", port=port)
+    uvicorn.run(app, host="0.0.0.0", port=port)
