@@ -183,3 +183,11 @@ async def websocket_endpoint(websocket: WebSocket, user_id: str):
 
     except WebSocketDisconnect:
         manager.disconnect(user_id)
+
+
+if __name__ == "__main__":
+    import uvicorn
+    import os
+    port_str = os.getenv("PORT")
+    port = int(port_str) if port_str and port_str.isdigit() else 10000
+    uvicorn.run("main:app", host="0.0.0.0", port=port)
