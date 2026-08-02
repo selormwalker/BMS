@@ -4,12 +4,48 @@
     {
       "src": "backend/main.py",
       "use": "@vercel/python"
+    },
+    {
+      "src": "frontend/**/*",
+      "use": "@vercel/static"
     }
   ],
   "routes": [
     {
-      "src": "/(.*)",
+      "src": "/api/(.*)",
       "dest": "backend/main.py"
+    },
+    {
+      "src": "/ws/(.*)",
+      "dest": "backend/main.py"
+    },
+    {
+      "src": "/auth.html",
+      "dest": "frontend/auth.html"
+    },
+    {
+      "src": "/chat.html",
+      "dest": "frontend/chat.html"
+    },
+    {
+      "src": "/settings.html",
+      "dest": "frontend/settings.html"
+    },
+    {
+      "src": "/contacts.html",
+      "dest": "frontend/contacts.html"
+    },
+    {
+      "src": "/bms_logo.jpg",
+      "dest": "frontend/bms_logo.jpg"
+    },
+    {
+      "src": "/config.js",
+      "dest": "frontend/config.js"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "frontend/$1"
     }
   ]
 }
