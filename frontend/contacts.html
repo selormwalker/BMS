@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BMS - Contacts</title>
+  <link rel="icon" type="image/jpeg" href="bms_logo.jpg">
+  <link rel="stylesheet" href="contacts.css">
+</head>
+<body>
+  <div class="contacts-container">
+    
+    <!-- Contacts Header -->
+    <header class="contacts-header">
+      <a href="chat.html" class="back-btn" aria-label="Back to chats">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+      </a>
+      <h1>Contacts</h1>
+      <button class="add-btn" id="add-contact-btn" title="Add Contact" aria-label="Add Contact">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      </button>
+    </header>
+
+    <!-- Search Section -->
+    <div class="search-box">
+      <input type="text" id="contact-search" placeholder="Search contacts..." aria-label="Search contacts">
+    </div>
+
+    <!-- Contacts Content -->
+    <main class="contacts-content" id="contacts-list">
+      <div class="empty-notice" id="empty-notice">No contacts added yet</div>
+    </main>
+
+  </div>
+
+  <script src="config.js"></script>
+  <script src="contacts.js"></script>
+</body>
+</html>

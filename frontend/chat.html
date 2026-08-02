@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BMS - Messages</title>
+  <link rel="icon" type="image/jpeg" href="bms_logo.jpg">
+  <link rel="stylesheet" href="chat.css">
+</head>
+<body>
+  <div class="chat-app-container">
+    
+    <!-- LEFT SIDEBAR: Conversations -->
+    <aside class="sidebar">
+      <header class="sidebar-header">
+        <div class="brand">
+          <img src="bms_logo.jpg" alt="BMS Logo" class="brand-logo">
+          <h2>BMS</h2>
+        </div>
+        <div class="header-nav">
+          <a href="contacts.html" class="nav-icon-btn" title="Contacts" aria-label="Contacts">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+          </a>
+          <a href="settings.html" class="nav-icon-btn" title="Settings" aria-label="Settings">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+          </a>
+        </div>
+      </header>
+
+      <!-- Search Section -->
+      <div class="search-box">
+        <input type="text" id="search-input" placeholder="Search chats..." aria-label="Search chats">
+      </div>
+
+      <!-- Action Row -->
+      <div class="sidebar-actions">
+        <h3>Conversations</h3>
+        <div class="action-btn-group">
+          <button class="action-btn" id="new-chat-btn" title="New Direct Chat">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="16" y1="11" x2="22" y2="11"/></svg>
+            Direct
+          </button>
+          <button class="action-btn" id="new-group-btn" title="New Group Chat">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            Group
+          </button>
+        </div>
+      </div>
+
+      <!-- Conversations List -->
+      <div class="conversations-list" id="conversations-list">
+        <div class="empty-list-notice" id="empty-list-notice">No conversations yet</div>
+      </div>
+    </aside>
+
+    <!-- MAIN CHAT PANEL -->
+    <main class="chat-main">
+      <!-- Active Chat Header -->
+      <header class="chat-header" id="chat-header">
+        <div class="active-user-info">
+          <button class="mobile-back-btn" id="mobile-back-btn" aria-label="Back to conversations">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+          </button>
+          <div class="user-avatar" id="active-avatar">?</div>
+          <div>
+            <h3 id="active-user-name">Select a conversation</h3>
+            <span class="active-user-status" id="active-user-status">Offline</span>
+          </div>
+        </div>
+
+        <div class="chat-header-actions" id="chat-header-actions" style="display: none;">
+          <button class="header-icon-btn" id="voice-call-btn" title="Voice Call" aria-label="Voice Call">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          </button>
+          <button class="header-icon-btn" id="video-call-btn" title="Video Call" aria-label="Video Call">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+          </button>
+        </div>
+      </header>
+
+      <!-- Message History Display -->
+      <div class="messages-container" id="messages-container">
+        <div class="empty-chat-state" id="empty-chat-state">
+          Select or start a conversation to display messages
+        </div>
+      </div>
+
+      <!-- Recording Bar Overlay -->
+      <div class="recording-bar hidden" id="recording-bar">
+        <span class="recording-dot"></span>
+        <span id="recording-timer">00:00</span>
+        <span class="recording-label">Recording Voice Note...</span>
+        <button type="button" class="recording-cancel-btn" id="recording-cancel-btn">Cancel</button>
+        <button type="button" class="recording-send-btn" id="recording-send-btn">Send Voice</button>
+      </div>
+
+      <!-- Message Input Form -->
+      <form class="message-input-form" id="message-form">
+        <!-- Attachments & Tools Buttons -->
+        <div class="input-tools">
+          <button type="button" class="tool-btn" id="attach-btn" title="Attach file" aria-label="Attach File">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.44 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>
+          </button>
+          <button type="button" class="tool-btn" id="emoji-btn" title="Emoji picker" aria-label="Choose Emoji">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+          </button>
+          <button type="button" class="tool-btn" id="mic-btn" title="Record Voice Note" aria-label="Record Voice Note">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="22"/></svg>
+          </button>
+        </div>
+
+        <!-- Attachment Menu Popup -->
+        <div class="attach-menu hidden" id="attach-menu">
+          <button type="button" class="attach-option" id="opt-image">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            Photo / Image
+          </button>
+          <button type="button" class="attach-option" id="opt-file">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg>
+            Document / File
+          </button>
+        </div>
+
+        <!-- Emoji Picker Popup -->
+        <div class="emoji-picker hidden" id="emoji-picker">
+          <span>😀</span><span>😂</span><span>😍</span><span>👍</span><span>❤️</span>
+          <span>🔥</span><span>🚀</span><span>🎉</span><span>🙏</span><span>😎</span>
+          <span>🙌</span><span>✨</span><span>💯</span><span>👏</span><span>💡</span>
+        </div>
+
+        <input type="text" id="message-input" placeholder="Type a message..." autocomplete="off" aria-label="Type a message">
+        <button type="submit" class="send-btn" id="send-btn" aria-label="Send Message">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+        </button>
+
+        <!-- Hidden File Inputs -->
+        <input type="file" id="image-file-input" accept="image/*" class="hidden">
+        <input type="file" id="doc-file-input" class="hidden">
+      </form>
+    </main>
+
+  </div>
+
+  <!-- GROUP CREATION MODAL -->
+  <div class="modal-overlay hidden" id="group-modal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3>Create Group Chat</h3>
+        <button type="button" class="modal-close-btn" id="group-modal-close" aria-label="Close modal">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <form id="group-form">
+        <div class="form-group">
+          <label for="group-name-input">Group Name</label>
+          <input type="text" id="group-name-input" placeholder="Enter group name" required>
+        </div>
+        <div class="form-group">
+          <label for="group-members-input">Members (comma separated)</label>
+          <input type="text" id="group-members-input" placeholder="Alex, Elena, Marcus" required>
+        </div>
+        <div class="modal-actions">
+          <button type="button" class="modal-cancel-btn" id="group-modal-cancel">Cancel</button>
+          <button type="submit" class="modal-submit-btn">Create Group</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- CALL OVERLAY (VOICE & VIDEO) -->
+  <div class="call-overlay hidden" id="call-overlay">
+    <div class="call-card">
+      <div class="call-avatar" id="call-avatar">
+        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      </div>
+      <h3 id="call-user-name">Contact</h3>
+      <p id="call-status">Calling...</p>
+      <span class="call-timer" id="call-timer">00:00</span>
+
+      <div class="call-controls">
+        <button type="button" class="call-control-btn" id="call-mute-btn" title="Mute Mic" aria-label="Mute Microphone">
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="22"/></svg>
+        </button>
+        <button type="button" class="call-control-btn" id="call-cam-btn" title="Toggle Camera" aria-label="Toggle Camera">
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+        </button>
+        <button type="button" class="call-control-btn end-call" id="call-end-btn" title="End Call" aria-label="End Call">
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.68 13.31a16 16 0 0 0 3.41 2.6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7 2 2 0 0 1 1.72 2v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.42 19.42 0 0 1-3.33-2.67m-2.67-3.34a19.79 19.79 0 0 1-3.07-8.63A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="config.js"></script>
+  <script src="chat.js"></script>
+</body>
+</html>

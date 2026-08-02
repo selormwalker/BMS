@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BMS - Settings</title>
+  <link rel="icon" type="image/jpeg" href="bms_logo.jpg">
+  <link rel="stylesheet" href="settings.css">
+</head>
+<body>
+  <div class="settings-container">
+    
+    <!-- Settings Header -->
+    <header class="settings-header">
+      <a href="chat.html" class="back-btn" aria-label="Back to chats">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+      </a>
+      <h1>Settings</h1>
+      <div style="width: 24px;"></div>
+    </header>
+
+    <!-- Settings Content -->
+    <main class="settings-content">
+      
+      <!-- Profile Header Card -->
+      <section class="profile-card">
+        <div class="profile-avatar">
+          <img src="bms_logo.jpg" alt="Profile Logo" id="profile-img">
+        </div>
+        <h2 id="display-name-heading">User Profile</h2>
+        <p id="display-email-sub">user@bms.app</p>
+      </section>
+
+      <!-- Account Settings Form -->
+      <form id="settings-form" class="settings-form">
+        <div class="section-title">Profile Information</div>
+        
+        <div class="form-group">
+          <label for="username-input">Username</label>
+          <input type="text" id="username-input" value="User" required placeholder="Enter username">
+        </div>
+
+        <div class="form-group">
+          <label for="bio-input">Bio / Status</label>
+          <input type="text" id="bio-input" value="Available" placeholder="Enter status or bio">
+        </div>
+
+        <div class="section-title">Security</div>
+
+        <div class="form-group">
+          <label for="current-pass">Current Password</label>
+          <input type="password" id="current-pass" placeholder="••••••••">
+        </div>
+
+        <div class="form-group">
+          <label for="new-pass">New Password</label>
+          <input type="password" id="new-pass" placeholder="Enter new password">
+        </div>
+
+        <div class="section-title">Preferences</div>
+
+        <div class="form-group-row">
+          <span>Notifications</span>
+          <label class="switch">
+            <input type="checkbox" id="notif-toggle" checked>
+            <span class="slider"></span>
+          </label>
+        </div>
+
+        <button type="submit" class="save-btn">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          Save Changes
+        </button>
+      </form>
+
+      <button class="logout-btn" id="logout-btn">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+        Log Out
+      </button>
+    </main>
+
+  </div>
+
+  <script src="config.js"></script>
+  <script src="settings.js"></script>
+</body>
+</html>
